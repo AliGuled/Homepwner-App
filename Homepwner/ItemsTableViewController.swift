@@ -59,7 +59,21 @@ class ItemsTableViewController: UITableViewController {
             setEditing(true, animated:  true)
         }
     }
- 
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0{
+            return "More than $50"
+        } else {
+            return "Less than $50"
+        }
+        
+    }
+    
+    
     
     //Letting the nunbmer of rows to be the array count
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,7 +83,6 @@ class ItemsTableViewController: UITableViewController {
     //Popluating our table view rows with name,serial nunmber and value dollars
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ItemCell
-     
         let item = itemStore.allItems[indexPath.row]
         cell.nameLabel.text = item.name
         cell.serialLabel.text = item.serialNumber
