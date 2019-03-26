@@ -25,43 +25,40 @@ class ItemsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
         
-        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 65
         
-        tableView.rowHeight = 65
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        tableView.reloadData()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        navigationItem.leftBarButtonItem = editButtonItem
+        
     }
     
     //Adding new row to the table view
-        @IBAction func addNewItem(_ sender: UIButton) {
+    @IBAction func addNewItem(_sender: UIBarButtonItem) {
         
         //Make a new index path for the 0th section, last row
         let newItem = itemStore.createItem()
         
         if let index = itemStore.allItems.index(of: newItem) {
             let indexPath = IndexPath(row: index, section: 0)
-        
-        // Insert this new row itto the table
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
-    }
-    //Togggleing the edit button between edit and done
-    @IBAction func toggleEditingMode(_ sender: UIButton) {
-        
-        if isEditing{
             
-            sender.setTitle("Edit", for: .normal)
-            setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Done", for: .normal)
-            setEditing(true, animated:  true)
+            // Insert this new row itto the table
+            tableView.insertRows(at: [indexPath], with: .automatic)
         }
+        
     }
+    
 
-    
-    
     //Letting the nunbmer of rows to be the array count
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
      return itemStore.allItems.count
@@ -130,5 +127,18 @@ class ItemsTableViewController: UITableViewController {
     //reorder the tableview
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "show item"?:
+            if let row = tableView.indexPathForSelectedRow?.row {
+                let item = itemStore.allItems[row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.item = item
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier")
+        }
     }
 }

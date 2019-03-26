@@ -19,7 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let itemStore = ItemStore()
         
-        let itemViewController = window?.rootViewController as! ItemsTableViewController
+        let navController = window?.rootViewController as! UINavigationController
+        navController.navigationBar.prefersLargeTitles = true
+        let itemViewController = navController.topViewController as! ItemsTableViewController
+        
         itemViewController.itemStore = itemStore
         
         return true

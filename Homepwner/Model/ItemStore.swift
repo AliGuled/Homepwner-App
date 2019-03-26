@@ -29,7 +29,7 @@ class ItemStore {
             allItems.remove(at: index)
         }
     }
-    //Movign the arrays
+    //Moving the arrays
     func moveItem(from fromIndex: Int, to toIndex: Int) {
         
         if fromIndex == toIndex {
