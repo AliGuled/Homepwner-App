@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18095C8E2250189F006453C7 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18095C8D2250189F006453C7 /* ImageStore.swift */; };
 		18A16579224AA0F4006B8844 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A16578224AA0F4006B8844 /* CustomTextField.swift */; };
 		18B7E08B22247A6D00336E8C /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7E08A22247A6D00336E8C /* ItemCell.swift */; };
 		18BAF0BE221F053100C615ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BAF0BD221F053100C615ED /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18095C8D2250189F006453C7 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		18A16578224AA0F4006B8844 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		18B7E08A22247A6D00336E8C /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		18BAF0BA221F053100C615ED /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,7 @@
 				18BAF0D1221F14C600C615ED /* Item.swift */,
 				18E76ACC2220BA390022A0DE /* ItemStore.swift */,
 				18A16578224AA0F4006B8844 /* CustomTextField.swift */,
+				18095C8D2250189F006453C7 /* ImageStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				TargetAttributes = {
 					18BAF0B9221F053100C615ED = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -190,6 +194,7 @@
 				18C14BF6224A6A69001A5375 /* DatePickerViewController.swift in Sources */,
 				18E76ACD2220BA390022A0DE /* ItemStore.swift in Sources */,
 				18A16579224AA0F4006B8844 /* CustomTextField.swift in Sources */,
+				18095C8E2250189F006453C7 /* ImageStore.swift in Sources */,
 				18C4CBE2224875BE00A4B4D3 /* DetailViewController.swift in Sources */,
 				18BAF0D0221F0CA300C615ED /* ItemsTableViewController.swift in Sources */,
 				18B7E08B22247A6D00336E8C /* ItemCell.swift in Sources */,
@@ -339,7 +344,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Guled-Ali.Homepwner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -357,7 +362,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Guled-Ali.Homepwner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

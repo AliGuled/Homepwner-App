@@ -8,13 +8,16 @@
 
 import UIKit
 
-class  Item: NSObject {
+class  Item: NSObject,NSCoding {
+   
+
     
     //The data vars
     var name: String
     var valueInDollars: Int
     var serialNumber: String?
     var dateCreated: Date
+    let itemKey: String
     
     //initalizing the data vars
     init(name: String, serialNumber: String?, valueInDollars: Int) {
@@ -22,8 +25,36 @@ class  Item: NSObject {
         self.valueInDollars = valueInDollars
         self.serialNumber = serialNumber
         self.dateCreated = Date()
+        self.itemKey = UUID().uuidString
         
         super.init()
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: constants.name)
+        aCoder.encode(dateCreated, forKey: constants.dateCreated)
+        aCoder.encode(itemKey,forKey: constants.itemKey)
+        aCoder.encode(serialNumber, forKey: constants.serialNumber)
+        aCoder.encode(valueInDollars, forKey: constants.valueInDollars)
+    }
+    
+    required  init(coder aDecoder: NSCoder) {
+        name = aDecoder.decodeObject(forKey: constants.name) as! String
+        dateCreated = aDecoder.decodeObject(forKey: constants.dateCreated) as! Date
+        itemKey = aDecoder.decodeObject(forKey: constants.itemKey) as! String
+        serialNumber = aDecoder.decodeObject(forKey: constants.serialNumber) as! String?
+        valueInDollars = aDecoder.decodeInteger(forKey: constants.valueInDollars)
+        
+        super.init()
+        
+    }
+    
+    struct constants {
+        static let name = "name"
+        static let dateCreated = "dateCreated"
+        static let itemKey = "itemKey"
+        static let serialNumber = "serialNumber"
+        static let valueInDollars = "valueIndollars"
     }
     
     //Convenient inilizer
@@ -47,5 +78,7 @@ class  Item: NSObject {
             
         }
     }
+    
+   
     
 }

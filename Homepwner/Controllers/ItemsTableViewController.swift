@@ -12,6 +12,7 @@ class ItemsTableViewController: UITableViewController {
     
     //Connecting to our model
     var itemStore: ItemStore!
+    var imageStore: ImageStore!
     var items: Item!
     //id for cell
     let identifier = "ItemCell"
@@ -49,7 +50,7 @@ class ItemsTableViewController: UITableViewController {
         //Make a new index path for the 0th section, last row
         let newItem = itemStore.createItem()
         
-        if let index = itemStore.allItems.index(of: newItem) {
+        if let index = itemStore.allItems.firstIndex(of: newItem) {
             let indexPath = IndexPath(row: index, section: 0)
             
             // Insert this new row itto the table
@@ -116,6 +117,9 @@ class ItemsTableViewController: UITableViewController {
             ac.addAction(cancelAction)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
                 self.itemStore.removeItem(item)
+                
+                //Remove the item's image from the image store
+                self.imageStore.deleteImage(forKey: item.itemKey)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             ac.addAction(deleteAction)
@@ -136,6 +140,7 @@ class ItemsTableViewController: UITableViewController {
                 let item = itemStore.allItems[row]
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.item = item
+                detailViewController.imageStore = imageStore
             }
         default:
             preconditionFailure("Unexpected segue identifier")
